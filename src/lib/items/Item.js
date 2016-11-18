@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import interact from 'interact.js'
 import moment from 'moment'
 
-import { _get } from '../utils'
+import { _get, deepObjectCompare } from '../utils'
 
 export default class Item extends Component {
   constructor (props) {
@@ -32,6 +32,7 @@ export default class Item extends Component {
                        nextState.resizing !== this.state.resizing ||
                        nextState.resizeTime !== this.state.resizeTime ||
                        nextProps.keys !== this.props.keys ||
+                       !deepObjectCompare(nextProps.itemProps, this.props.itemProps) ||
                        nextProps.selected !== this.props.selected ||
                        nextProps.item !== this.props.item ||
                        nextProps.canvasTimeStart !== this.props.canvasTimeStart ||
@@ -43,6 +44,7 @@ export default class Item extends Component {
                        nextProps.minResizeWidth !== this.props.minResizeWidth ||
                        nextProps.selected !== this.props.selected ||
                        nextProps.canChangeGroup !== this.props.canChangeGroup ||
+                       nextProps.canSelect !== this.props.canSelect ||
                        nextProps.topOffset !== this.props.topOffset ||
                        nextProps.canMove !== this.props.canMove ||
                        nextProps.canResize !== this.props.canResize ||
@@ -335,7 +337,7 @@ export default class Item extends Component {
   };
 
   actualClick (e, clickType) {
-    if (this.props.onSelect) {
+    if (this.props.canSelect && this.props.onSelect) {
       this.props.onSelect(this.itemId, clickType, e)
     }
   }
@@ -361,7 +363,8 @@ export default class Item extends Component {
     }
 
     return (
-      <div key={this.itemId}
+      <div {...this.props.item.itemProps}
+           key={this.itemId}
            ref='item'
            className={classNames}
            title={this.itemDivTitle}

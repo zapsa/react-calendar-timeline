@@ -188,7 +188,8 @@ export default class ReactCalendarTimeline extends Component {
 
   resize () {
     // FIXME currently when the component creates a scroll the scrollbar is not used in the initial width calculation, resizing fixes this
-    let width = this.refs.container.clientWidth - this.props.sidebarWidth
+    const {width: containerWidth, top: containerTop} = this.refs.container.getBoundingClientRect()
+    let width = containerWidth - this.props.sidebarWidth
 
     const {
       dimensionItems, height, groupHeights, groupTops
@@ -196,7 +197,7 @@ export default class ReactCalendarTimeline extends Component {
 
     this.setState({
       width: width,
-      topOffset: this.refs.container.getBoundingClientRect().top + window.pageYOffset,
+      topOffset: containerTop + window.pageYOffset,
       dimensionItems: dimensionItems,
       height: height,
       groupHeights: groupHeights,
@@ -228,7 +229,7 @@ export default class ReactCalendarTimeline extends Component {
     }
 
     if (this.state.visibleTimeStart !== visibleTimeStart || this.state.visibleTimeEnd !== visibleTimeStart + zoom) {
-      this.props.onTimeChange.bind(this)(visibleTimeStart, visibleTimeStart + zoom)
+      this.props.onTimeChange.bind(this)(visibleTimeStart, visibleTimeStart + zoom, this.updateScrollCanvas)
     }
   }
 
@@ -253,7 +254,7 @@ export default class ReactCalendarTimeline extends Component {
     this.setState({ dimensionItems, height, groupHeights, groupTops })
   }
 
-  updateScrollCanvas (visibleTimeStart, visibleTimeEnd, forceUpdateDimensions, updatedItems, updatedGroups) {
+  updateScrollCanvas = (visibleTimeStart, visibleTimeEnd, forceUpdateDimensions, updatedItems, updatedGroups) => {
     const oldCanvasTimeStart = this.state.canvasTimeStart
     const oldZoom = this.state.visibleTimeEnd - this.state.visibleTimeStart
     const newZoom = visibleTimeEnd - visibleTimeStart
@@ -360,7 +361,7 @@ export default class ReactCalendarTimeline extends Component {
     const newZoom = Math.min(Math.max(Math.round(oldZoom * scale), minZoom), maxZoom) // min 1 min, max 20 years
     const newVisibleTimeStart = Math.round(this.state.visibleTimeStart + (oldZoom - newZoom) * offset)
 
-    this.props.onTimeChange.bind(this)(newVisibleTimeStart, newVisibleTimeStart + newZoom)
+    this.props.onTimeChange.bind(this)(newVisibleTimeStart, newVisibleTimeStart + newZoom, this.updateScrollCanvas)
   }
 
   showPeriod = (from, unit) => {
@@ -382,7 +383,7 @@ export default class ReactCalendarTimeline extends Component {
       zoom = visibleTimeEnd - visibleTimeStart
     }
 
-    this.props.onTimeChange.bind(this)(visibleTimeStart, visibleTimeStart + zoom)
+    this.props.onTimeChange.bind(this)(visibleTimeStart, visibleTimeStart + zoom, this.updateScrollCanvas)
   }
 
   selectItem = (item, clickType, e) => {
@@ -469,19 +470,25 @@ export default class ReactCalendarTimeline extends Component {
     const headerHeight = headerLabelGroupHeight + headerLabelHeight
 
     if (pageY - topOffset > headerHeight) {
-      this.setState({isDragging: true, dragStartPosition: e.pageX})
+      this.setState({isDragging: true, dragStartPosition: e.pageX, dragLastPosition: e.pageX})
     }
   }
 
   handleMouseMove = (e) => {
     if (this.state.isDragging && !this.state.draggingItem && !this.state.resizingItem) {
-      this.refs.scrollComponent.scrollLeft += this.state.dragStartPosition - e.pageX
-      this.setState({dragStartPosition: e.pageX})
+      this.refs.scrollComponent.scrollLeft += this.state.dragLastPosition - e.pageX
+      this.setState({dragLastPosition: e.pageX})
     }
   }
 
   handleMouseUp = (e) => {
-    this.setState({isDragging: false, dragStartPosition: null})
+    const { dragStartPosition } = this.state
+
+    if (Math.abs(dragStartPosition - e.pageX) <= this.props.clickTolerance) {
+      this.scrollAreaClick(e)
+    }
+
+    this.setState({isDragging: false, dragStartPosition: null, dragLastPosition: null})
   }
 
   todayLine (canvasTimeStart, zoom, canvasTimeEnd, canvasWidth, minUnit, height, headerHeight) {
@@ -546,6 +553,7 @@ export default class ReactCalendarTimeline extends Component {
              canMove={this.props.canMove}
              canResize={this.props.canResize}
              useResizeHandle={this.props.useResizeHandle}
+             canSelect={this.props.canSelect}
              moveResizeValidator={this.props.moveResizeValidator}
              topOffset={this.state.topOffset}
              itemSelect={this.selectItem}
@@ -677,7 +685,7 @@ export default class ReactCalendarTimeline extends Component {
     }
 
     if (this.props.onCanvasDoubleClick) {
-      this.props.onCanvasDoubleClick(timePosition, this.props.groups[groupIndex])
+      this.props.onCanvasDoubleClick(this.props.groups[groupIndex], timePosition, e)
     }
   }
 
@@ -721,7 +729,6 @@ export default class ReactCalendarTimeline extends Component {
           <div ref='scrollComponent'
                className='rct-scroll'
                style={scrollComponentStyle}
-               onClick={this.scrollAreaClick}
                onScroll={this.onScroll}
                onWheel={this.onWheel}
                onMouseDown={this.handleMouseDown}
@@ -773,10 +780,13 @@ ReactCalendarTimeline.propTypes = {
   minZoom: React.PropTypes.number,
   maxZoom: React.PropTypes.number,
 
+  clickTolerance: React.PropTypes.number,
+
   canChangeGroup: React.PropTypes.bool,
   canMove: React.PropTypes.bool,
   canResize: React.PropTypes.bool,
   useResizeHandle: React.PropTypes.bool,
+  canSelect: React.PropTypes.bool,
 
   stackItems: React.PropTypes.bool,
 
@@ -827,10 +837,13 @@ ReactCalendarTimeline.defaultProps = {
   minZoom: 60 * 60 * 1000, // 1 hour
   maxZoom: 5 * 365.24 * 86400 * 1000, // 5 years
 
+  clickTolerance: 3, // how many pixels can we drag for it to be still considered a click?
+
   canChangeGroup: true,
   canMove: true,
   canResize: true,
   useResizeHandle: false,
+  canSelect: true,
 
   stackItems: false,
 
@@ -861,8 +874,8 @@ ReactCalendarTimeline.defaultProps = {
   // which needs to update the props visibleTimeStart and visibleTimeEnd to the ones passed
   visibleTimeStart: null,
   visibleTimeEnd: null,
-  onTimeChange: function (visibleTimeStart, visibleTimeEnd) {
-    this.updateScrollCanvas(visibleTimeStart, visibleTimeEnd)
+  onTimeChange: function (visibleTimeStart, visibleTimeEnd, updateScrollCanvas) {
+    updateScrollCanvas(visibleTimeStart, visibleTimeEnd)
   },
   // called after the calendar loads and the visible time has been calculated
   onTimeInit: null,
