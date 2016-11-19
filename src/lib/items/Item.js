@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import interact from 'interact.js'
 import moment from 'moment'
 
-import { _get, deepObjectCompare } from '../utils'
+import { _get, deepObjectCompare, closestSnap } from '../utils'
 
 export default class Item extends Component {
   constructor (props) {
@@ -66,19 +66,21 @@ export default class Item extends Component {
 
   dragTimeSnap (dragTime, considerOffset) {
     const { dragSnap } = this.props
-    if (dragSnap) {
-      const offset = considerOffset ? moment().utcOffset() * 60 * 1000 : 0
-      return Math.round(dragTime / dragSnap) * dragSnap - offset % dragSnap
-    } else {
-      return dragTime
-    }
+    return closestSnap(dragTime, dragSnap)
+    // if (dragSnap) {
+    //   // const offset = considerOffset ? moment().utcOffset() * 60 * 1000 : 0
+    //   // return Math.round(dragTime / dragSnap) * dragSnap - offset % dragSnap
+    //   return closestSnap(dragTime, dragSnap)
+    // } else {
+    //   return dragTime
+    // }
   }
 
   resizeTimeSnap (dragTime) {
     const { dragSnap } = this.props
     if (dragSnap) {
       const endTime = this.itemTimeEnd % dragSnap
-      return Math.round((dragTime - endTime) / dragSnap) * dragSnap + endTime
+      return closestSnap(dragTime - endTime, dragSnap) + endTime
     } else {
       return dragTime
     }

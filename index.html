@@ -47,7 +47,7 @@
         title: faker.hacker.phrase(),
         start: startValue,
         end: endValue,
-        canMove: startValue > new Date().getTime(),
+        canMove: true, // startValue > new Date().getTime(),
         canResize: endValue > new Date().getTime(),
         className: (moment(startDate).day() === 6 || moment(startDate).day() === 0) ? 'item-weekend' : '',
         itemProps: {
@@ -104,12 +104,13 @@
       onItemContextMenu: function (item) {
         console.log("Context Menu: " + item);
       },
+      dragSnap: 14400000,
 
       moveResizeValidator: function(action, item, time) {
-        if (time < new Date().getTime()) {
-          var newTime = Math.ceil(new Date().getTime() / (15*60*1000)) * (15*60*1000);
-          return newTime;
-        }
+        // if (time < new Date().getTime()) {
+        //   var newTime = Math.ceil(new Date().getTime() / (15*60*1000)) * (15*60*1000);
+        //   return newTime;
+        // }
 
         return time
       },

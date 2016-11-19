@@ -10,7 +10,7 @@ import VerticalLines from './lines/VerticalLines'
 import HorizontalLines from './lines/HorizontalLines'
 import TodayLine from './lines/TodayLine'
 
-import { getMinUnit, getNextUnit, getParentPosition, _get, _length, stack, nostack, calculateDimensions, getGroupOrders, getVisibleItems, hasSomeParentTheClass } from './utils.js'
+import { getMinUnit, getNextUnit, getParentPosition, _get, _length, stack, nostack, calculateDimensions, getGroupOrders, getVisibleItems, hasSomeParentTheClass, closestSnap } from './utils.js'
 
 const defaultKeys = {
   groupIdKey: 'id',
@@ -409,7 +409,7 @@ export default class ReactCalendarTimeline extends Component {
 
     const row = Math.floor((y - (lineHeight * 2)) / lineHeight)
     let time = Math.round(visibleTimeStart + x / width * (visibleTimeEnd - visibleTimeStart))
-    time = Math.floor(time / dragSnap) * dragSnap
+    time = closestSnap(time, dragSnap)
 
     return [row, time]
   }
@@ -671,7 +671,7 @@ export default class ReactCalendarTimeline extends Component {
     const boundingRect = this.refs.scrollComponent.getBoundingClientRect()
     let timePosition = visibleTimeStart + ratio * (pageX - boundingRect.left)
     if (this.props.dragSnap) {
-      timePosition = Math.round(timePosition / this.props.dragSnap) * this.props.dragSnap
+      timePosition = closestSnap(timePosition, this.props.dragSnap)
     }
 
     let groupIndex = 0

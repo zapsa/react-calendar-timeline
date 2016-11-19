@@ -353,3 +353,37 @@ export function deepObjectCompare (obj1, obj2) {
   }
   return true
 };
+
+export function closestSnap (time, snap) {
+  if (snap) {
+    let unit
+    let start
+    let count
+
+    if (snap < 60000) { // less than 1min
+      start = moment(time).startOf('minute').valueOf()
+      unit = 'seconds'
+      count = snap / 1000
+    } else if (snap < 3600000) { // 1min...1h
+      start = moment(time).startOf('hour').valueOf()
+      unit = 'minutes'
+      count = snap / 60000
+    } else if (snap < 86400000) { // 1h...1day
+      start = moment(time).startOf('day').valueOf()
+      unit = 'hours'
+      count = snap / 3600000
+    } else {
+      return Math.round(time / snap) * snap
+    }
+
+    let iter = start
+    while (true) {
+      if (time < moment(iter).add(count / 2, unit).valueOf()) {
+        return iter
+      }
+      iter = moment(iter).add(count, unit).valueOf()
+    }
+  } else {
+    return time
+  }
+}
