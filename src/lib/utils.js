@@ -376,12 +376,25 @@ export function closestSnap (time, snap) {
       return Math.round(time / snap) * snap
     }
 
-    let iter = start
-    while (true) {
-      if (time < moment(iter).add(count / 2, unit).valueOf()) {
-        return iter
+    // full unit, so multiples of e.g. 4h
+    // we're doing this as with daylight savings, using .add(4, hours) after oct 30 at 00:00 === 03:00
+    // but we can't do this with partial units, e.g. .set('cours', 1.5) just adds 1h
+    if (Math.round(count) === count) {
+      let i = 0
+      while (true) {
+        if (time < moment(start).set(unit, (i + 1) * count).add(-count / 2, unit).valueOf()) {
+          return moment(start).set(unit, i * count).valueOf()
+        }
+        i += 1
       }
-      iter = moment(iter).add(count, unit).valueOf()
+    } else {
+      let iter = start
+      while (true) {
+        if (time < moment(iter).add(count / 2, unit).valueOf()) {
+          return iter
+        }
+        iter = moment(iter).add(count, unit).valueOf()
+      }
     }
   } else {
     return time
