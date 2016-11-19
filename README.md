@@ -9,6 +9,10 @@ Demo here: http://namespace.ee/react-calendar-timeline/
 ## Getting started
 
 ```
+# via yarn
+yarn add react-calendar-timeline
+
+# via npm
 npm install --save react-calendar-timeline
 ```
 
@@ -17,6 +21,11 @@ npm install --save react-calendar-timeline
 You need to install them separately:
 
 ```
+# via yarn
+yarn add react react-dom # you probably already have these
+yarn add moment interact.js
+
+# via npm
 npm install --save react react-dom # you probably already have these
 npm install --save moment interact.js
 ```
@@ -54,10 +63,12 @@ ReactDOM.render(
 ```
 
 ## API
-The component can take many parameters.
+*NB!* All props need to be immutable. For example, this means if you wish to change the title of one of your items, please pass in a whole new items array instead of changing the title in the old array. [Here's more info.](http://reactkungfu.com/2015/08/pros-and-cons-of-using-immutability-with-react-js/)
+
+The component can take many props:
 
 ### groups
-Expects either a vanilla JS array or an immutable JS array, consisting of objects with the following attributes:
+Expects either a vanilla JS array or an immutableJS array, consisting of objects with the following attributes:
 ```
 {
   id: 1,
@@ -66,7 +77,7 @@ Expects either a vanilla JS array or an immutable JS array, consisting of object
 ```
 
 ### items
-Expects either a vanilla JS array or an immutable JS array, consisting of objects with the following attributes:
+Expects either a vanilla JS array or an immutableJS array, consisting of objects with the following attributes:
 ```
 {
   id: 1,
@@ -120,7 +131,7 @@ How does the header (the scrolling part with dates) behave if not all of the gro
 What z-index value do the header and the sidebar have. Default `10`
 
 ### lineHeight
-Height of one line in the calendar in pizels. Default `30`
+Height of one line in the calendar in pixels. Default `30`
 
 ### headerLabelGroupHeight
 Height of the top header line. Default `30`
@@ -179,8 +190,8 @@ Default:
 ### onItemMove(itemId, dragTime, newGroupOrder)
 Callback when an item is moved. Returns 1) the item's ID, 2) the new start time and 3) the index of the new group in the `groups` array.
 
-### onItemResize(itemId, newResizeEnd)
-Callback when an item is resized. Returns 1) the item's ID, 2) the new end time of the item
+### onItemResize(itemId, time, edge)
+Callback when an item is resized. Returns 1) the item's ID, 2) the new start or end time of the item 3) The edge that was dragged (`left` or `right`)
 
 ### onItemSelect(itemId, e)
 Called when an item is selected. This is sent on the first click on an item.
@@ -200,19 +211,21 @@ Called when an item was double clicked
 ### onItemContextMenu(itemId, e)
 Called when the item is clicked by the right button of the mouse. Note: If this property is set the default context menu doesn't appear
 
-### moveResizeValidator(action, itemId, time)
+### moveResizeValidator(action, itemId, time, resizeEdge)
 This function is called when an item is being moved or resized. It's up to this function to return a new version of `change`, when the proposed move would violate business logic.
 
 The argument `action` is one of `move` or `resize`.
 
-The argument `time` describes the proposed new time for either the start time of the item (for move) or the end time (for resize).
+The argument `resizeEdge` is when resizing one of `left` or `right`.
+
+The argument `time` describes the proposed new time for either the start time of the item (for move) or the start or end time (for resize).
 
 The function must return a new unix timestamp in milliseconds... or just `time` if the proposed new time doesn't interfere with business logic.
 
 For example, to prevent moving of items into the past, but to keep them at 15min intervals, use this code:
 
 ```js
-function(action, item, time) {
+function (action, item, time, resizeEdge) {
   if (time < new Date().getTime()) {
     var newTime = Math.ceil(new Date().getTime() / (15*60*1000)) * (15*60*1000);
     return newTime;

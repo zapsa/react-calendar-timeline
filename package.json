@@ -1,6 +1,6 @@
 {
   "name": "react-calendar-timeline",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "react calendar timeline",
   "main": "modules/index.js",
   "scripts": {
@@ -21,10 +21,10 @@
     "info": "npm info react-calendar-timeline",
     "start": "./node_modules/.bin/webpack-dev-server --inline --hot --host 0.0.0.0"
   },
-  "homepage": "https://github.com/sjchmiela/react-calendar-timeline",
+  "homepage": "https://github.com/namespace-ee/react-calendar-timeline",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sjchmiela/react-calendar-timeline.git"
+    "url": "https://github.com/namespace-ee/react-calendar-timeline.git"
   },
   "author": "Marius Andra <marius.andra@gmail.com>",
   "contributors": [
@@ -45,10 +45,10 @@
     "react-pure-render": "^1.0.2"
   },
   "peerDependencies": {
-    "react": "^0.14.8 || ^15.0.1",
-    "react-dom": "^0.14.8 || ^15.0.1",
+    "interact.js": "*",
     "moment": "*",
-    "interact.js": "*"
+    "react": "^0.14.8 || ^15.0.1",
+    "react-dom": "^0.14.8 || ^15.0.1"
   },
   "devDependencies": {
     "babel-cli": "^6.7.5",
