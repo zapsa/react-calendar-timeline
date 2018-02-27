@@ -1092,7 +1092,10 @@ export default class ReactCalendarTimeline extends Component {
     minUnit,
     timeSteps,
     height,
-    headerHeight
+    headerHeight,
+
+    groupHeights,
+    groups,
   ) {
     return (
       <VerticalLines
@@ -1106,6 +1109,8 @@ export default class ReactCalendarTimeline extends Component {
         fixedHeader={this.props.fixedHeader}
         height={height}
         headerHeight={headerHeight}
+        groupHeights={groupHeights}
+        groups={groups}
       />
     )
   }
@@ -1598,7 +1603,10 @@ export default class ReactCalendarTimeline extends Component {
                 minUnit,
                 timeSteps,
                 height,
-                headerHeight
+                headerHeight,
+
+                groupHeights,
+                groups,
               )}
               {this.horizontalLines(canvasWidth, groupHeights, headerHeight)}
               {this.todayLine(

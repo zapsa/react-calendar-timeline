@@ -1,6 +1,7 @@
 import faker from 'faker'
 import randomColor from 'randomcolor'
 import moment from 'moment'
+import React from 'react'
 
 export default function (groupCount = 30, itemCount = 1000, daysInPast = 30) {
   let randomSeed = Math.floor(Math.random() * 1000)
@@ -9,6 +10,7 @@ export default function (groupCount = 30, itemCount = 1000, daysInPast = 30) {
     groups.push({
       id: `${i + 1}`,
       title: faker.name.firstName(),
+      cellRederer: (g, height) => <div style={{height: `${height}px`, lineHeight: `${height}px`, textAlign: 'center'}}>50</div>,
       rightTitle: faker.name.lastName(),
       bgColor: randomColor({ luminosity: 'light', seed: randomSeed + i })
     })

@@ -45,10 +45,11 @@ export default class VerticalLines extends Component {
       minUnit,
       timeSteps,
       height,
-      headerHeight
+      headerHeight,
+      groupHeights,
+      groups,
     } = this.props
     const ratio = canvasWidth / (canvasTimeEnd - canvasTimeStart)
-
     let lines = []
 
     iterateTimes(
@@ -83,8 +84,12 @@ export default class VerticalLines extends Component {
               width: `${labelWidth}px`,
               height: `${height - headerHeight}px`
             }}
-          />
-        )
+          >{groups.map((g, index) => {
+            if (g.cellRederer) return g.cellRederer(g, groupHeights[index]);
+              return null;
+          })}
+          </div>
+          )
       }
     )
 

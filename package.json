@@ -1,7 +1,7 @@
 {
-  "name": "react-calendar-timeline",
+  "name": "@zapsa/zap-calendar-timeline",
   "version": "0.15.7",
-  "description": "react calendar timeline",
+  "description": "Zap calendar timeline",
   "main": "lib/index.js",
   "module": "src/index.js",
   "scripts": {
@@ -26,18 +26,6 @@
     "url": "https://github.com/namespace-ee/react-calendar-timeline.git"
   },
   "author": "Marius Andra <marius.andra@gmail.com>",
-  "contributors": [
-    "Stanisław Chmiela <sjchmiela@gmail.com>",
-    "Mike Joyce <mikejoyce19@gmail.com>",
-    "Samuel Rossetti"
-  ],
-  "license": "MIT",
-  "keywords": [
-    "react",
-    "reactjs",
-    "react-component",
-    "timeline"
-  ],
   "standard": {
     "parser": "babel-eslint"
   },
