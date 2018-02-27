@@ -85,7 +85,7 @@ export default class VerticalLines extends Component {
               height: `${height - headerHeight}px`
             }}
           >{groups.map((g, index) => {
-            if (g.cellRederer) return g.cellRederer(g, groupHeights[index]);
+            if (g.cellRenderer) return g.cellRenderer(g, groupHeights[index]);
               return null;
           })}
           </div>
