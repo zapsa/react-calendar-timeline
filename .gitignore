@@ -1,13 +1,4 @@
 node_modules
-bower_components
 .DS_Store
-*.log
-.idea
-.sass-cache
-modules
-build
-gh-pages
-/lib
-
-# code coverage
-coverage
+npm-debug.log
+./example/node_modules/
