@@ -1,6 +1,6 @@
 {
   "name": "@zapsa/zap-calendar-timeline",
-  "version": "0.15.9",
+  "version": "0.15.10",
   "description": "Zap calendar timeline",
   "main": "lib/index.js",
   "module": "src/index.js",
