@@ -1518,8 +1518,8 @@ var _initialiseProps = function _initialiseProps() {
       for (var _iterator = Object.keys(groupTops)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var key = _step.value;
 
-        console.error('topOffset: ' + topOffset, 'groupTops: ' + groupTops[key], 'pageY: ' + pageY);
         var item = groupTops[key];
+        console.error('item: ' + item + ', topOffset: ' + topOffset, 'groupTops: ' + groupTops[key], 'pageY: ' + pageY);
         if (pageY - topOffset > item) {
           groupIndex = parseInt(key, 10);
         } else {

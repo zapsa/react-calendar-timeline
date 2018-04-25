@@ -1316,8 +1316,12 @@ export default class ReactCalendarTimeline extends Component {
     let groupIndex = 0;
     console.error('groups :', this.props.groups, groupTops);
     for (const key of Object.keys(groupTops)) {
-      console.error(`topOffset: ${topOffset}`, `groupTops: ${groupTops[key]}`, `pageY: ${pageY}`);
       const item = groupTops[key];
+      console.error(
+        `item: ${item}, topOffset: ${topOffset}`,
+        `groupTops: ${groupTops[key]}`,
+        `pageY: ${pageY}`,
+      );
       if (pageY - topOffset > item) {
         groupIndex = parseInt(key, 10);
       } else {
