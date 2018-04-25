@@ -281,7 +281,7 @@ var ReactCalendarTimeline = function (_Component) {
       }
 
       // resize if the sidebar width changed
-      if (sidebarWidth !== this.props.sidebarWidth && items && groups) {
+      if (sidebarWidth !== this.props.sidebarWidth && items && groups || groups.length !== nextProps.groups.length) {
         this.resize(nextProps);
       }
     }
@@ -1072,15 +1072,11 @@ var _initialiseProps = function _initialiseProps() {
 
     var width = containerWidth - props.sidebarWidth - props.rightSidebarWidth;
 
-    console.error(_this4.container.getBoundingClientRect(), _this4.container);
-
     var _stackItems2 = _this4.stackItems(props.items, props.groups, _this4.state.canvasTimeStart, _this4.state.visibleTimeStart, _this4.state.visibleTimeEnd, width),
         dimensionItems = _stackItems2.dimensionItems,
         height = _stackItems2.height,
         groupHeights = _stackItems2.groupHeights,
         groupTops = _stackItems2.groupTops;
-
-    console.error('calculating top offset ' + containerTop + ' + ' + window.pageYOffset + ' = ' + (containerTop + window.pageYOffset));
 
     _this4.setState({
       width: width,
@@ -1513,7 +1509,6 @@ var _initialiseProps = function _initialiseProps() {
     }
 
     var groupIndex = 0;
-    console.error('groups :', _this4.props.groups, groupTops);
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
@@ -1523,7 +1518,6 @@ var _initialiseProps = function _initialiseProps() {
         var key = _step.value;
 
         var item = groupTops[key];
-        console.error('item: ' + item + ', topOffset: ' + topOffset, 'groupTops: ' + groupTops[key], 'pageY: ' + pageY);
         if (pageY - topOffset > item) {
           groupIndex = parseInt(key, 10);
         } else {

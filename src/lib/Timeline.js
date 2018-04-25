@@ -496,8 +496,6 @@ export default class ReactCalendarTimeline extends Component {
     const { width: containerWidth, top: containerTop } = this.container.getBoundingClientRect();
     const width = containerWidth - props.sidebarWidth - props.rightSidebarWidth;
 
-    console.error(this.container.getBoundingClientRect(), this.container);
-
     const {
       dimensionItems, height, groupHeights, groupTops,
     } = this.stackItems(
@@ -508,9 +506,6 @@ export default class ReactCalendarTimeline extends Component {
       this.state.visibleTimeEnd,
       width,
     );
-
-    console.error(`calculating top offset ${containerTop} + ${window.pageYOffset} = ${containerTop +
-        window.pageYOffset}`);
 
     this.setState({
       width,
@@ -571,7 +566,10 @@ export default class ReactCalendarTimeline extends Component {
     }
 
     // resize if the sidebar width changed
-    if (sidebarWidth !== this.props.sidebarWidth && items && groups) {
+    if (
+      (sidebarWidth !== this.props.sidebarWidth && items && groups) ||
+      groups.length !== nextProps.groups.length
+    ) {
       this.resize(nextProps);
     }
   }
@@ -1319,14 +1317,8 @@ export default class ReactCalendarTimeline extends Component {
     }
 
     let groupIndex = 0;
-    console.error('groups :', this.props.groups, groupTops);
     for (const key of Object.keys(groupTops)) {
       const item = groupTops[key];
-      console.error(
-        `item: ${item}, topOffset: ${topOffset}`,
-        `groupTops: ${groupTops[key]}`,
-        `pageY: ${pageY}`,
-      );
       if (pageY - topOffset > item) {
         groupIndex = parseInt(key, 10);
       } else {
