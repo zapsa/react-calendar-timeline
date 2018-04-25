@@ -507,6 +507,9 @@ export default class ReactCalendarTimeline extends Component {
       width,
     );
 
+    console.error(`calculating top offset ${containerTop} + ${window.pageYOffset} = ${containerTop +
+        window.pageYOffset}`);
+
     this.setState({
       width,
       topOffset: containerTop + window.pageYOffset,

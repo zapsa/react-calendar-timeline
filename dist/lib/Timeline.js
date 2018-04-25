@@ -1078,6 +1078,8 @@ var _initialiseProps = function _initialiseProps() {
         groupHeights = _stackItems2.groupHeights,
         groupTops = _stackItems2.groupTops;
 
+    console.error('calculating top offset ' + containerTop + ' + ' + window.pageYOffset + ' = ' + (containerTop + window.pageYOffset));
+
     _this4.setState({
       width: width,
       topOffset: containerTop + window.pageYOffset,
