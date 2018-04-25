@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -9,59 +9,59 @@ var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = [
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _propTypes = require("prop-types");
+var _propTypes = require('prop-types');
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _moment = require("moment");
+var _moment = require('moment');
 
 var _moment2 = _interopRequireDefault(_moment);
 
-var _Items = require("./items/Items");
+var _Items = require('./items/Items');
 
 var _Items2 = _interopRequireDefault(_Items);
 
-var _InfoLabel = require("./layout/InfoLabel");
+var _InfoLabel = require('./layout/InfoLabel');
 
 var _InfoLabel2 = _interopRequireDefault(_InfoLabel);
 
-var _Sidebar = require("./layout/Sidebar");
+var _Sidebar = require('./layout/Sidebar');
 
 var _Sidebar2 = _interopRequireDefault(_Sidebar);
 
-var _Header = require("./layout/Header");
+var _Header = require('./layout/Header');
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _VerticalLines = require("./lines/VerticalLines");
+var _VerticalLines = require('./lines/VerticalLines');
 
 var _VerticalLines2 = _interopRequireDefault(_VerticalLines);
 
-var _HorizontalLines = require("./lines/HorizontalLines");
+var _HorizontalLines = require('./lines/HorizontalLines');
 
 var _HorizontalLines2 = _interopRequireDefault(_HorizontalLines);
 
-var _TodayLine = require("./lines/TodayLine");
+var _TodayLine = require('./lines/TodayLine');
 
 var _TodayLine2 = _interopRequireDefault(_TodayLine);
 
-var _CursorLine = require("./lines/CursorLine");
+var _CursorLine = require('./lines/CursorLine');
 
 var _CursorLine2 = _interopRequireDefault(_CursorLine);
 
-var _window = require("../resize-detector/window");
+var _window = require('../resize-detector/window');
 
 var _window2 = _interopRequireDefault(_window);
 
-var _calendar = require("./utility/calendar");
+var _calendar = require('./utility/calendar');
 
-var _domHelpers = require("./utility/dom-helpers");
+var _domHelpers = require('./utility/dom-helpers');
 
-var _generic = require("./utility/generic");
+var _generic = require('./utility/generic');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -75,15 +75,15 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // import "./Timeline.scss";
 
 var defaultKeys = exports.defaultKeys = {
-  groupIdKey: "id",
-  groupTitleKey: "title",
-  groupRightTitleKey: "rightTitle",
-  itemIdKey: "id",
-  itemTitleKey: "content",
-  itemDivTitleKey: "title",
-  itemGroupKey: "group",
-  itemTimeStartKey: "start_time",
-  itemTimeEndKey: "end_time"
+  groupIdKey: 'id',
+  groupTitleKey: 'title',
+  groupRightTitleKey: 'rightTitle',
+  itemIdKey: 'id',
+  itemTitleKey: 'content',
+  itemDivTitleKey: 'title',
+  itemGroupKey: 'group',
+  itemTimeStartKey: 'start_time',
+  itemTimeEndKey: 'end_time'
 };
 
 var defaultTimeSteps = exports.defaultTimeSteps = {
@@ -96,42 +96,42 @@ var defaultTimeSteps = exports.defaultTimeSteps = {
 };
 
 var defaultHeaderLabelFormats = exports.defaultHeaderLabelFormats = {
-  yearShort: "YY",
-  yearLong: "YYYY",
-  monthShort: "MM/YY",
-  monthMedium: "MM/YYYY",
-  monthMediumLong: "MMM YYYY",
-  monthLong: "MMMM YYYY",
-  dayShort: "L",
-  dayLong: "dddd, LL",
-  hourShort: "HH",
-  hourMedium: "HH:00",
-  hourMediumLong: "L, HH:00",
-  hourLong: "dddd, LL, HH:00",
-  time: "LLL"
+  yearShort: 'YY',
+  yearLong: 'YYYY',
+  monthShort: 'MM/YY',
+  monthMedium: 'MM/YYYY',
+  monthMediumLong: 'MMM YYYY',
+  monthLong: 'MMMM YYYY',
+  dayShort: 'L',
+  dayLong: 'dddd, LL',
+  hourShort: 'HH',
+  hourMedium: 'HH:00',
+  hourMediumLong: 'L, HH:00',
+  hourLong: 'dddd, LL, HH:00',
+  time: 'LLL'
 };
 
 var defaultSubHeaderLabelFormats = exports.defaultSubHeaderLabelFormats = {
-  yearShort: "YY",
-  yearLong: "YYYY",
-  monthShort: "MM",
-  monthMedium: "MMM",
-  monthLong: "MMMM",
-  dayShort: "D",
-  dayMedium: "dd D",
-  dayMediumLong: "ddd, Do",
-  dayLong: "dddd, Do",
-  hourShort: "HH",
-  hourLong: "HH:00",
-  minuteShort: "mm",
-  minuteLong: "HH:mm"
+  yearShort: 'YY',
+  yearLong: 'YYYY',
+  monthShort: 'MM',
+  monthMedium: 'MMM',
+  monthLong: 'MMMM',
+  dayShort: 'D',
+  dayMedium: 'dd D',
+  dayMediumLong: 'ddd, Do',
+  dayLong: 'dddd, Do',
+  hourShort: 'HH',
+  hourLong: 'HH:00',
+  minuteShort: 'mm',
+  minuteLong: 'HH:mm'
 };
 
 var ReactCalendarTimeline = function (_Component) {
   _inherits(ReactCalendarTimeline, _Component);
 
   _createClass(ReactCalendarTimeline, [{
-    key: "getChildContext",
+    key: 'getChildContext',
     value: function getChildContext() {
       var _this2 = this;
 
@@ -142,9 +142,9 @@ var ReactCalendarTimeline = function (_Component) {
               visibleTimeStart = _state.visibleTimeStart,
               visibleTimeEnd = _state.visibleTimeEnd;
 
-          //TODO: Performance
-          //prob wanna memoize this so we ensure that if no items changed,
-          //we return same context reference
+          // TODO: Performance
+          // prob wanna memoize this so we ensure that if no items changed,
+          // we return same context reference
 
           return {
             timelineWidth: width,
@@ -174,10 +174,10 @@ var ReactCalendarTimeline = function (_Component) {
       visibleTimeEnd = _this.props.visibleTimeEnd;
     } else {
       visibleTimeStart = Math.min.apply(Math, _toConsumableArray(_this.props.items.map(function (item) {
-        return (0, _generic._get)(item, "start").getTime();
+        return (0, _generic._get)(item, 'start').getTime();
       })));
       visibleTimeEnd = Math.max.apply(Math, _toConsumableArray(_this.props.items.map(function (item) {
-        return (0, _generic._get)(item, "end").getTime();
+        return (0, _generic._get)(item, 'end').getTime();
       })));
 
       if (!visibleTimeStart || !visibleTimeEnd) {
@@ -197,7 +197,7 @@ var ReactCalendarTimeline = function (_Component) {
       visibleTimeEnd: visibleTimeEnd,
       canvasTimeStart: visibleTimeStart - (visibleTimeEnd - visibleTimeStart),
 
-      headerPosition: "top",
+      headerPosition: 'top',
 
       selectedItem: null,
       dragTime: null,
@@ -228,7 +228,7 @@ var ReactCalendarTimeline = function (_Component) {
   }
 
   _createClass(ReactCalendarTimeline, [{
-    key: "componentDidMount",
+    key: 'componentDidMount',
     value: function componentDidMount() {
       this.resize(this.props);
 
@@ -240,14 +240,14 @@ var ReactCalendarTimeline = function (_Component) {
 
       this.lastTouchDistance = null;
 
-      window.addEventListener("scroll", this.scrollEventListener);
+      window.addEventListener('scroll', this.scrollEventListener);
 
-      this.scrollComponent.addEventListener("touchstart", this.touchStart);
-      this.scrollComponent.addEventListener("touchmove", this.touchMove);
-      this.scrollComponent.addEventListener("touchend", this.touchEnd);
+      this.scrollComponent.addEventListener('touchstart', this.touchStart);
+      this.scrollComponent.addEventListener('touchmove', this.touchMove);
+      this.scrollComponent.addEventListener('touchend', this.touchEnd);
     }
   }, {
-    key: "componentWillUnmount",
+    key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       if (this.props.resizeDetector && this.props.resizeDetector.addListener) {
         this.props.resizeDetector.removeListener(this);
@@ -255,17 +255,17 @@ var ReactCalendarTimeline = function (_Component) {
 
       _window2.default.removeListener(this);
 
-      window.removeEventListener("scroll", this.scrollEventListener);
+      window.removeEventListener('scroll', this.scrollEventListener);
 
-      this.scrollComponent.removeEventListener("touchstart", this.touchStart);
-      this.scrollComponent.removeEventListener("touchmove", this.touchMove);
-      this.scrollComponent.removeEventListener("touchend", this.touchEnd);
+      this.scrollComponent.removeEventListener('touchstart', this.touchStart);
+      this.scrollComponent.removeEventListener('touchmove', this.touchMove);
+      this.scrollComponent.removeEventListener('touchend', this.touchEnd);
     }
 
     // called on window scroll. it's job is to figure out if we should fix or float the header
 
   }, {
-    key: "componentWillReceiveProps",
+    key: 'componentWillReceiveProps',
     value: function componentWillReceiveProps(nextProps) {
       var visibleTimeStart = nextProps.visibleTimeStart,
           visibleTimeEnd = nextProps.visibleTimeEnd,
@@ -286,7 +286,7 @@ var ReactCalendarTimeline = function (_Component) {
       }
     }
   }, {
-    key: "updateDimensions",
+    key: 'updateDimensions',
     value: function updateDimensions(items, groups) {
       var _state2 = this.state,
           canvasTimeStart = _state2.canvasTimeStart,
@@ -300,27 +300,29 @@ var ReactCalendarTimeline = function (_Component) {
           groupHeights = _stackItems.groupHeights,
           groupTops = _stackItems.groupTops;
 
-      this.setState({ dimensionItems: dimensionItems, height: height, groupHeights: groupHeights, groupTops: groupTops });
+      this.setState({
+        dimensionItems: dimensionItems, height: height, groupHeights: groupHeights, groupTops: groupTops
+      });
     }
 
     // called when the visible time changes
 
   }, {
-    key: "zoomIn",
+    key: 'zoomIn',
     value: function zoomIn(e) {
       e.preventDefault();
 
       this.changeZoom(0.75);
     }
   }, {
-    key: "zoomOut",
+    key: 'zoomOut',
     value: function zoomOut(e) {
       e.preventDefault();
 
       this.changeZoom(1.25);
     }
   }, {
-    key: "changeZoom",
+    key: 'changeZoom',
     value: function changeZoom(scale) {
       var offset = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.5;
       var _props = this.props,
@@ -339,7 +341,7 @@ var ReactCalendarTimeline = function (_Component) {
     // as well as generalizing how we get time from click on the canvas
 
   }, {
-    key: "todayLine",
+    key: 'todayLine',
     value: function todayLine(canvasTimeStart, zoom, canvasTimeEnd, canvasWidth, minUnit, height, headerHeight) {
       return _react2.default.createElement(_TodayLine2.default, {
         canvasTimeStart: canvasTimeStart,
@@ -352,7 +354,7 @@ var ReactCalendarTimeline = function (_Component) {
       });
     }
   }, {
-    key: "cursorLine",
+    key: 'cursorLine',
     value: function cursorLine(cursorTime, canvasTimeStart, zoom, canvasTimeEnd, canvasWidth, minUnit, height, headerHeight) {
       return _react2.default.createElement(_CursorLine2.default, {
         cursorTime: cursorTime,
@@ -366,7 +368,7 @@ var ReactCalendarTimeline = function (_Component) {
       });
     }
   }, {
-    key: "verticalLines",
+    key: 'verticalLines',
     value: function verticalLines(canvasTimeStart, zoom, canvasTimeEnd, canvasWidth, minUnit, timeSteps, height, headerHeight, groupHeights, groups) {
       return _react2.default.createElement(_VerticalLines2.default, {
         canvasTimeStart: canvasTimeStart,
@@ -384,7 +386,7 @@ var ReactCalendarTimeline = function (_Component) {
       });
     }
   }, {
-    key: "horizontalLines",
+    key: 'horizontalLines',
     value: function horizontalLines(canvasWidth, groupHeights, headerHeight) {
       return _react2.default.createElement(_HorizontalLines2.default, {
         canvasWidth: canvasWidth,
@@ -394,7 +396,7 @@ var ReactCalendarTimeline = function (_Component) {
       });
     }
   }, {
-    key: "items",
+    key: 'items',
     value: function items(canvasTimeStart, zoom, canvasTimeEnd, canvasWidth, minUnit, dimensionItems, groupHeights, groupTops) {
       return _react2.default.createElement(_Items2.default, {
         canvasTimeStart: canvasTimeStart,
@@ -430,20 +432,20 @@ var ReactCalendarTimeline = function (_Component) {
       });
     }
   }, {
-    key: "infoLabel",
+    key: 'infoLabel',
     value: function infoLabel() {
       var label = null;
 
       if (this.state.dragTime) {
-        label = (0, _moment2.default)(this.state.dragTime).format("LLL") + ", " + this.state.dragGroupTitle;
+        label = (0, _moment2.default)(this.state.dragTime).format('LLL') + ', ' + this.state.dragGroupTitle;
       } else if (this.state.resizeTime) {
-        label = (0, _moment2.default)(this.state.resizeTime).format("LLL");
+        label = (0, _moment2.default)(this.state.resizeTime).format('LLL');
       }
 
-      return label ? _react2.default.createElement(_InfoLabel2.default, { label: label }) : "";
+      return label ? _react2.default.createElement(_InfoLabel2.default, { label: label }) : '';
     }
   }, {
-    key: "header",
+    key: 'header',
     value: function header(canvasTimeStart, zoom, canvasTimeEnd, canvasWidth, minUnit, timeSteps, headerLabelGroupHeight, headerLabelHeight) {
       return _react2.default.createElement(_Header2.default, {
         canvasTimeStart: canvasTimeStart,
@@ -468,7 +470,7 @@ var ReactCalendarTimeline = function (_Component) {
       });
     }
   }, {
-    key: "sidebar",
+    key: 'sidebar',
     value: function sidebar(height, groupHeights, headerHeight) {
       return _react2.default.createElement(
         _Sidebar2.default,
@@ -489,7 +491,7 @@ var ReactCalendarTimeline = function (_Component) {
       );
     }
   }, {
-    key: "rightSidebar",
+    key: 'rightSidebar',
     value: function rightSidebar(height, groupHeights, headerHeight) {
       return _react2.default.createElement(
         _Sidebar2.default,
@@ -510,7 +512,7 @@ var ReactCalendarTimeline = function (_Component) {
       );
     }
   }, {
-    key: "stackItems",
+    key: 'stackItems',
     value: function stackItems(items, groups, canvasTimeStart, visibleTimeStart, visibleTimeEnd, width) {
       // if there are no groups return an empty array of dimensions
       if (groups.length === 0) {
@@ -592,10 +594,12 @@ var ReactCalendarTimeline = function (_Component) {
           groupHeights = _stackingMethod.groupHeights,
           groupTops = _stackingMethod.groupTops;
 
-      return { dimensionItems: dimensionItems, height: height, groupHeights: groupHeights, groupTops: groupTops };
+      return {
+        dimensionItems: dimensionItems, height: height, groupHeights: groupHeights, groupTops: groupTops
+      };
     }
   }, {
-    key: "childrenWithProps",
+    key: 'childrenWithProps',
     value: function childrenWithProps(canvasTimeStart, canvasTimeEnd, canvasWidth, dimensionItems, groupHeights, groupTops, height, headerHeight, visibleTimeStart, visibleTimeEnd, minUnit, timeSteps) {
       if (!this.props.children) {
         return null;
@@ -631,7 +635,7 @@ var ReactCalendarTimeline = function (_Component) {
       });
     }
   }, {
-    key: "render",
+    key: 'render',
     value: function render() {
       var _this3 = this;
 
@@ -676,40 +680,40 @@ var ReactCalendarTimeline = function (_Component) {
       }
 
       var outerComponentStyle = {
-        height: height + "px"
+        height: height + 'px'
       };
 
       var scrollComponentStyle = {
-        width: width + "px",
-        height: height + 20 + "px",
-        cursor: isDragging ? "move" : "default"
+        width: width + 'px',
+        height: height + 20 + 'px',
+        cursor: isDragging ? 'move' : 'default'
       };
 
       var canvasComponentStyle = {
-        width: canvasWidth + "px",
-        height: height + "px"
+        width: canvasWidth + 'px',
+        height: height + 'px'
       };
 
       return _react2.default.createElement(
-        "div",
+        'div',
         {
           style: this.props.style,
           ref: function ref(el) {
             return _this3.container = el;
           },
-          className: "react-calendar-timeline"
+          className: 'react-calendar-timeline'
         },
         _react2.default.createElement(
-          "div",
-          { style: outerComponentStyle, className: "rct-outer" },
+          'div',
+          { style: outerComponentStyle, className: 'rct-outer' },
           sidebarWidth > 0 ? this.sidebar(height, groupHeights, headerHeight) : null,
           _react2.default.createElement(
-            "div",
+            'div',
             {
               ref: function ref(el) {
                 return _this3.scrollComponent = el;
               },
-              className: "rct-scroll",
+              className: 'rct-scroll',
               style: scrollComponentStyle,
               onScroll: this.onScroll,
               onWheel: this.onWheel,
@@ -719,12 +723,12 @@ var ReactCalendarTimeline = function (_Component) {
               onMouseLeave: this.handleMouseLeave
             },
             _react2.default.createElement(
-              "div",
+              'div',
               {
                 ref: function ref(el) {
                   return _this3.canvasComponent = el;
                 },
-                className: "rct-canvas",
+                className: 'rct-canvas',
                 style: canvasComponentStyle,
                 onDoubleClick: this.handleDoubleClick,
                 onMouseEnter: this.handleCanvasMouseEnter,
@@ -760,7 +764,7 @@ ReactCalendarTimeline.propTypes = {
   rightSidebarContent: _propTypes2.default.node,
   dragSnap: _propTypes2.default.number,
   minResizeWidth: _propTypes2.default.number,
-  fixedHeader: _propTypes2.default.oneOf(["fixed", "sticky", "none"]),
+  fixedHeader: _propTypes2.default.oneOf(['fixed', 'sticky', 'none']),
   stickyOffset: _propTypes2.default.number,
   fullUpdate: _propTypes2.default.bool,
   lineHeight: _propTypes2.default.number,
@@ -775,7 +779,7 @@ ReactCalendarTimeline.propTypes = {
 
   canChangeGroup: _propTypes2.default.bool,
   canMove: _propTypes2.default.bool,
-  canResize: _propTypes2.default.oneOf([true, false, "left", "right", "both"]),
+  canResize: _propTypes2.default.oneOf([true, false, 'left', 'right', 'both']),
   useResizeHandle: _propTypes2.default.bool,
   canSelect: _propTypes2.default.bool,
 
@@ -814,7 +818,7 @@ ReactCalendarTimeline.propTypes = {
     groupTitleKey: _propTypes2.default.string,
     groupRightTitleKey: _propTypes2.default.string,
     itemIdKey: _propTypes2.default.string,
-    itemTitleKey: _propTypes2.default.func,
+    itemTitleKey: _propTypes2.default.string,
     itemDivTitleKey: _propTypes2.default.string,
     itemGroupKey: _propTypes2.default.string,
     itemTimeStartKey: _propTypes2.default.string,
@@ -884,7 +888,7 @@ ReactCalendarTimeline.defaultProps = {
   rightSidebarWidth: 0,
   dragSnap: 1000 * 60 * 15, // 15min
   minResizeWidth: 20,
-  fixedHeader: "sticky", // fixed or sticky or none
+  fixedHeader: 'sticky', // fixed or sticky or none
   stickyOffset: 0,
   fullUpdate: true,
   lineHeight: 30,
@@ -899,7 +903,7 @@ ReactCalendarTimeline.defaultProps = {
 
   canChangeGroup: true,
   canMove: true,
-  canResize: "right",
+  canResize: 'right',
   useResizeHandle: false,
   canSelect: true,
 
@@ -940,6 +944,7 @@ ReactCalendarTimeline.defaultProps = {
   onTimeChange: function onTimeChange(visibleTimeStart, visibleTimeEnd, updateScrollCanvas) {
     updateScrollCanvas(visibleTimeStart, visibleTimeEnd);
   },
+
   // called after the calendar loads and the visible time has been calculated
   onTimeInit: null,
   // called when the canvas area of the calendar changes
@@ -968,11 +973,11 @@ var _initialiseProps = function _initialiseProps() {
     var rect = _this4.container.getBoundingClientRect();
 
     if (rect.top > _this4.props.stickyOffset) {
-      _this4.setState({ headerPosition: "top" });
+      _this4.setState({ headerPosition: 'top' });
     } else if (rect.bottom < headerHeight + _this4.props.stickyOffset) {
-      _this4.setState({ headerPosition: "bottom" });
+      _this4.setState({ headerPosition: 'bottom' });
     } else {
-      _this4.setState({ headerPosition: "fixed" });
+      _this4.setState({ headerPosition: 'fixed' });
     }
   };
 
@@ -1216,7 +1221,7 @@ var _initialiseProps = function _initialiseProps() {
     }
 
     // clicked on the big header and already focused here, zoom out
-    if (unit !== "year" && _this4.state.visibleTimeStart === visibleTimeStart && _this4.state.visibleTimeEnd === visibleTimeEnd) {
+    if (unit !== 'year' && _this4.state.visibleTimeStart === visibleTimeStart && _this4.state.visibleTimeEnd === visibleTimeEnd) {
       var nextUnit = (0, _calendar.getNextUnit)(unit);
 
       visibleTimeStart = from.startOf(nextUnit).valueOf();
@@ -1228,7 +1233,7 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.selectItem = function (item, clickType, e) {
-    if (_this4.state.selectedItem === item || _this4.props.itemTouchSendsClick && clickType === "touch") {
+    if (_this4.state.selectedItem === item || _this4.props.itemTouchSendsClick && clickType === 'touch') {
       if (item && _this4.props.onItemClick) {
         var time = _this4.timeFromItemEvent(e);
         _this4.props.onItemClick(item, e, time);
@@ -1321,7 +1326,7 @@ var _initialiseProps = function _initialiseProps() {
   this.scrollAreaClick = function (e) {
     // if not clicking on an item
 
-    if (!(0, _domHelpers.hasSomeParentTheClass)(e.target, "rct-item")) {
+    if (!(0, _domHelpers.hasSomeParentTheClass)(e.target, 'rct-item')) {
       if (_this4.state.selectedItem) {
         _this4.selectItem(null);
       } else if (_this4.props.onCanvasClick) {
@@ -1346,7 +1351,7 @@ var _initialiseProps = function _initialiseProps() {
       draggingItem: item,
       dragTime: dragTime,
       newGroupOrder: newGroupOrder,
-      dragGroupTitle: newGroup ? (0, _generic._get)(newGroup, keys.groupTitleKey) : ""
+      dragGroupTitle: newGroup ? (0, _generic._get)(newGroup, keys.groupTitleKey) : ''
     });
   };
 
@@ -1602,17 +1607,17 @@ var _temp = function () {
     return;
   }
 
-  __REACT_HOT_LOADER__.register(defaultKeys, "defaultKeys", "src/lib/Timeline.js");
+  __REACT_HOT_LOADER__.register(defaultKeys, 'defaultKeys', 'src/lib/Timeline.js');
 
-  __REACT_HOT_LOADER__.register(defaultTimeSteps, "defaultTimeSteps", "src/lib/Timeline.js");
+  __REACT_HOT_LOADER__.register(defaultTimeSteps, 'defaultTimeSteps', 'src/lib/Timeline.js');
 
-  __REACT_HOT_LOADER__.register(defaultHeaderLabelFormats, "defaultHeaderLabelFormats", "src/lib/Timeline.js");
+  __REACT_HOT_LOADER__.register(defaultHeaderLabelFormats, 'defaultHeaderLabelFormats', 'src/lib/Timeline.js');
 
-  __REACT_HOT_LOADER__.register(defaultSubHeaderLabelFormats, "defaultSubHeaderLabelFormats", "src/lib/Timeline.js");
+  __REACT_HOT_LOADER__.register(defaultSubHeaderLabelFormats, 'defaultSubHeaderLabelFormats', 'src/lib/Timeline.js');
 
-  __REACT_HOT_LOADER__.register(ReactCalendarTimeline, "ReactCalendarTimeline", "src/lib/Timeline.js");
+  __REACT_HOT_LOADER__.register(ReactCalendarTimeline, 'ReactCalendarTimeline', 'src/lib/Timeline.js');
 
-  __REACT_HOT_LOADER__.register(_default, "default", "src/lib/Timeline.js");
+  __REACT_HOT_LOADER__.register(_default, 'default', 'src/lib/Timeline.js');
 }();
 
 ;
