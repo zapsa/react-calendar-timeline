@@ -496,6 +496,8 @@ export default class ReactCalendarTimeline extends Component {
     const { width: containerWidth, top: containerTop } = this.container.getBoundingClientRect();
     const width = containerWidth - props.sidebarWidth - props.rightSidebarWidth;
 
+    console.error(this.container.getBoundingClientRect(), this.container);
+
     const {
       dimensionItems, height, groupHeights, groupTops,
     } = this.stackItems(

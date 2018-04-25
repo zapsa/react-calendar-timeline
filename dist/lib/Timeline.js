@@ -1072,6 +1072,8 @@ var _initialiseProps = function _initialiseProps() {
 
     var width = containerWidth - props.sidebarWidth - props.rightSidebarWidth;
 
+    console.error(_this4.container.getBoundingClientRect(), _this4.container);
+
     var _stackItems2 = _this4.stackItems(props.items, props.groups, _this4.state.canvasTimeStart, _this4.state.visibleTimeStart, _this4.state.visibleTimeEnd, width),
         dimensionItems = _stackItems2.dimensionItems,
         height = _stackItems2.height,
