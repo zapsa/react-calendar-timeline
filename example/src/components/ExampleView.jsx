@@ -15,29 +15,29 @@ class ExampleView extends Component {
         {
           id: 1,
           title: 'Room 1',
-          // cellRenderer: (group, height) => (
-          //   <div style={{ lineHeight: `${height}px`, height: `${height}px`, textAlign: 'center' }}>
-          //     {29}€
-          //   </div>
-          // ),
+          cellRenderer: (group, height) => (
+            <div style={{ lineHeight: `${height}px`, height: `${height}px`, textAlign: 'center' }}>
+              {29}€
+            </div>
+          ),
         },
         {
           id: 2,
           title: 'Room 2',
-          // cellRenderer: (group, height) => (
-          //   <div style={{ lineHeight: `${height}px`, height: `${height}px`, textAlign: 'center' }}>
-          //     {29}€
-          //   </div>
-          // ),
+          cellRenderer: (group, height) => (
+            <div style={{ lineHeight: `${height}px`, height: `${height}px`, textAlign: 'center' }}>
+              {29}€
+            </div>
+          ),
         },
         {
           id: 3,
           title: 'Room 2',
-          // cellRenderer: (group, height) => (
-          //   <div style={{ lineHeight: `${height}px`, height: `${height}px`, textAlign: 'center' }}>
-          //     {29}€
-          //   </div>
-          // ),
+          cellRenderer: (group, height) => (
+            <div style={{ lineHeight: `${height}px`, height: `${height}px`, textAlign: 'center' }}>
+              {29}€
+            </div>
+          ),
         },
       ],
       items: [
@@ -127,7 +127,7 @@ class ExampleView extends Component {
           defaultTimeEnd={this.state.defaultTimeEnd}
           onItemDoubleClick={(item, e, time) => {}}
           onCanvasDoubleClick={(group, time, e) => {
-            console.error(group, time);
+            console.error(group, time, e);
           }}
           canMove={false}
           canResize={false}

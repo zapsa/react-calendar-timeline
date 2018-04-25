@@ -587,7 +587,10 @@ export default class ReactCalendarTimeline extends Component {
     );
 
     this.setState({
-      dimensionItems, height, groupHeights, groupTops,
+      dimensionItems,
+      height,
+      groupHeights,
+      groupTops,
     });
   }
 
@@ -1283,7 +1286,10 @@ export default class ReactCalendarTimeline extends Component {
     );
 
     return {
-      dimensionItems, height, groupHeights, groupTops,
+      dimensionItems,
+      height,
+      groupHeights,
+      groupTops,
     };
   }
 
@@ -1308,7 +1314,9 @@ export default class ReactCalendarTimeline extends Component {
     }
 
     let groupIndex = 0;
+    console.error('groups :', this.props.groups, groupTops);
     for (const key of Object.keys(groupTops)) {
+      console.error(`topOffset: ${topOffset}`, `groupTops: ${groupTops[key]}`, `pageY: ${pageY}`);
       const item = groupTops[key];
       if (pageY - topOffset > item) {
         groupIndex = parseInt(key, 10);

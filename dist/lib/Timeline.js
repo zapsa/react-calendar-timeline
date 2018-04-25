@@ -301,7 +301,10 @@ var ReactCalendarTimeline = function (_Component) {
           groupTops = _stackItems.groupTops;
 
       this.setState({
-        dimensionItems: dimensionItems, height: height, groupHeights: groupHeights, groupTops: groupTops
+        dimensionItems: dimensionItems,
+        height: height,
+        groupHeights: groupHeights,
+        groupTops: groupTops
       });
     }
 
@@ -595,7 +598,10 @@ var ReactCalendarTimeline = function (_Component) {
           groupTops = _stackingMethod.groupTops;
 
       return {
-        dimensionItems: dimensionItems, height: height, groupHeights: groupHeights, groupTops: groupTops
+        dimensionItems: dimensionItems,
+        height: height,
+        groupHeights: groupHeights,
+        groupTops: groupTops
       };
     }
   }, {
@@ -1503,6 +1509,7 @@ var _initialiseProps = function _initialiseProps() {
     }
 
     var groupIndex = 0;
+    console.error('groups :', _this4.props.groups, groupTops);
     var _iteratorNormalCompletion = true;
     var _didIteratorError = false;
     var _iteratorError = undefined;
@@ -1511,6 +1518,7 @@ var _initialiseProps = function _initialiseProps() {
       for (var _iterator = Object.keys(groupTops)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
         var key = _step.value;
 
+        console.error('topOffset: ' + topOffset, 'groupTops: ' + groupTops[key], 'pageY: ' + pageY);
         var item = groupTops[key];
         if (pageY - topOffset > item) {
           groupIndex = parseInt(key, 10);
