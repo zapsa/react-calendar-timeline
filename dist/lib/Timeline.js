@@ -281,7 +281,7 @@ var ReactCalendarTimeline = function (_Component) {
       }
 
       // resize if the sidebar width changed
-      if (sidebarWidth !== this.props.sidebarWidth && items && groups || groups.length !== this.props.groups.length) {
+      if (sidebarWidth !== this.props.sidebarWidth && items && groups) {
         this.resize(nextProps);
       }
     }
@@ -1487,13 +1487,13 @@ var _initialiseProps = function _initialiseProps() {
   };
 
   this.handleDoubleClick = function (e) {
+    var topOffset = _this4.container.getBoundingClientRect().top + window.pageYOffset;
     var _state9 = _this4.state,
         canvasTimeStart = _state9.canvasTimeStart,
         width = _state9.width,
         visibleTimeStart = _state9.visibleTimeStart,
         visibleTimeEnd = _state9.visibleTimeEnd,
-        groupTops = _state9.groupTops,
-        topOffset = _state9.topOffset;
+        groupTops = _state9.groupTops;
 
     var zoom = visibleTimeEnd - visibleTimeStart;
     var canvasTimeEnd = canvasTimeStart + zoom * 3;

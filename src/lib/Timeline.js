@@ -566,10 +566,7 @@ export default class ReactCalendarTimeline extends Component {
     }
 
     // resize if the sidebar width changed
-    if (
-      (sidebarWidth !== this.props.sidebarWidth && items && groups) ||
-      groups.length !== this.props.groups.length
-    ) {
+    if (sidebarWidth !== this.props.sidebarWidth && items && groups) {
       this.resize(nextProps);
     }
   }
@@ -1297,13 +1294,9 @@ export default class ReactCalendarTimeline extends Component {
   }
 
   handleDoubleClick = (e) => {
+    const topOffset = this.container.getBoundingClientRect().top + window.pageYOffset;
     const {
-      canvasTimeStart,
-      width,
-      visibleTimeStart,
-      visibleTimeEnd,
-      groupTops,
-      topOffset,
+      canvasTimeStart, width, visibleTimeStart, visibleTimeEnd, groupTops,
     } = this.state;
     const zoom = visibleTimeEnd - visibleTimeStart;
     const canvasTimeEnd = canvasTimeStart + zoom * 3;
